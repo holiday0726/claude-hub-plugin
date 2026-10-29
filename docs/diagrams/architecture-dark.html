@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>agent-hub 구성</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@500;600&family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #2d3142; color: #f5f5f5; font-family: 'Geist', 'Noto Sans KR', sans-serif; padding: 3rem 2rem; }
+.frame { max-width: 1200px; margin: 0 auto; }
+.eyebrow { font-family: 'Geist Mono', monospace; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: #bfc0c0; margin-bottom: 0.5rem; }
+h1 { font-family: 'Instrument Serif', 'Noto Serif KR', serif; font-weight: 400; font-size: 2rem; margin-bottom: 1.5rem; }
+.scroll { overflow-x: auto; }
+svg { width: 100%; min-width: 1000px; display: block; }
+</style>
+</head>
+<body>
+<div class="frame">
+<p class="eyebrow">Architecture / agent-hub</p>
+<h1>agent-hub 구성</h1>
+<div class="scroll">
+<svg viewBox="0 24 1000 524" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="architecture-dark-title architecture-dark-desc">
+<title id="architecture-dark-title">agent-hub 구성</title>
+<desc id="architecture-dark-desc">사용자가 허브 세션에 지시하면 허브가 슈퍼바이저와 작업 세션에 배정하고 보고를 받아 허브 폴더에 기록하며, 대시보드가 그 폴더를 읽고 플러그인 훅 세 개가 대시보드 기동, 허브 폴더 보호, 커밋 문구 검사를 맡는 구성.</desc>
+<defs>
+<pattern id="architecture-dark-dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="rgba(245,245,245,0.1)"/></pattern>
+<marker id="architecture-dark-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bfc0c0"/></marker>
+<marker id="architecture-dark-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f08a59"/></marker>
+</defs>
+<rect y="24" width="1000" height="524" fill="#2d3142"/>
+<rect y="24" width="1000" height="524" fill="url(#architecture-dark-dots)" opacity="0.55"/>
+<rect x="480" y="304" width="484" height="120" rx="8" fill="rgba(245,245,245,0.02)" stroke="rgba(245,245,245,0.1)" stroke-width="0.8"/>
+<rect x="496" y="308" width="104" height="12" rx="2" fill="#2d3142"/>
+<text x="548" y="317" fill="#949eb2" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.14em">AGENT-HUB HOOKS</text>
+<path d="M 152,136 H 218" fill="none" stroke="#f08a59" stroke-width="1.4" marker-end="url(#architecture-dark-arrow-accent)"/>
+<path d="M 396,120 H 444 Q 452,120 452,112 V 104 Q 452,96 460,96 H 518" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 396,152 H 428 Q 436,152 436,160 V 208 Q 436,216 444,216 H 518" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 612,128 V 182" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 612,248 V 260 Q 612,268 604,268 H 360 Q 352,268 352,260 V 170" fill="none" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 264,168 V 318" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 220,352 H 166" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 496,368 H 398" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 722,400 V 452 Q 722,460 714,460 H 110 Q 102,460 102,452 V 386" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<path d="M 878,336 V 224 Q 878,216 870,216 H 706" fill="none" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<rect x="168" y="112" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="186" y="124" fill="#f08a59" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">지시</text>
+<rect x="470" y="72" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="488" y="84" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">배정</text>
+<rect x="462" y="192" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="480" y="204" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">배정</text>
+<rect x="620" y="148" width="64" height="16" rx="2" fill="#2d3142"/>
+<text x="652" y="160" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">하위 세션</text>
+<rect x="452" y="274" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="470" y="286" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">보고</text>
+<rect x="272" y="236" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="290" y="248" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">기록</text>
+<rect x="176" y="328" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="194" y="340" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">읽기</text>
+<rect x="428" y="344" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="446" y="356" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">지킴</text>
+<rect x="392" y="466" width="36" height="16" rx="2" fill="#2d3142"/>
+<text x="410" y="478" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">띄움</text>
+<rect x="886" y="268" width="68" height="16" rx="2" fill="#2d3142"/>
+<text x="920" y="280" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">커밋 검사</text>
+<rect x="40" y="104" width="112" height="64" rx="6" fill="#2d3142"/>
+<rect x="40" y="104" width="112" height="64" rx="6" fill="rgba(148,158,178,0.12)" stroke="#949eb2" stroke-width="1"/>
+<rect x="48" y="112" width="27" height="12" rx="2" fill="transparent" stroke="#949eb2" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="61.5" y="121" fill="#949eb2" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">EXT</text>
+<text x="96" y="148" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">사용자</text>
+<rect x="220" y="104" width="176" height="64" rx="6" fill="#2d3142"/>
+<rect x="220" y="104" width="176" height="64" rx="6" fill="rgba(240,138,89,0.10)" stroke="#f08a59" stroke-width="1"/>
+<rect x="228" y="112" width="27" height="12" rx="2" fill="transparent" stroke="#f08a59" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="241.5" y="121" fill="#f08a59" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">HUB</text>
+<text x="308" y="142" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">허브 세션</text>
+<text x="308" y="158" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">cwd = hub_dir</text>
+<rect x="520" y="64" width="184" height="64" rx="6" fill="#2d3142"/>
+<rect x="520" y="64" width="184" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="528" y="72" width="37" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.4)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="546.5" y="81" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">SUPER</text>
+<text x="612" y="102" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">슈퍼바이저 세션</text>
+<text x="612" y="118" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">claude --bg --settings</text>
+<rect x="520" y="184" width="184" height="64" rx="6" fill="#2d3142"/>
+<rect x="520" y="184" width="184" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="528" y="192" width="32" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.4)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="544" y="201" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">TASK</text>
+<text x="612" y="222" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">작업 세션</text>
+<text x="612" y="238" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">claude --bg</text>
+<rect x="220" y="320" width="176" height="64" rx="6" fill="#2d3142"/>
+<rect x="220" y="320" width="176" height="64" rx="6" fill="rgba(245,245,245,0.05)" stroke="#bfc0c0" stroke-width="1"/>
+<rect x="228" y="328" width="27" height="12" rx="2" fill="transparent" stroke="#bfc0c0" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="241.5" y="337" fill="#bfc0c0" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">DIR</text>
+<text x="308" y="358" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">허브 폴더</text>
+<text x="308" y="374" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">STATUS.md, *.json</text>
+<rect x="40" y="320" width="124" height="64" rx="6" fill="#2d3142"/>
+<rect x="40" y="320" width="124" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="48" y="328" width="27" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.4)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="61.5" y="337" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">WEB</text>
+<text x="102" y="358" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">대시보드</text>
+<text x="102" y="374" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">127.0.0.1:4990</text>
+<rect x="496" y="336" width="140" height="64" rx="6" fill="#2d3142"/>
+<rect x="496" y="336" width="140" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="504" y="344" width="32" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.4)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="520" y="353" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">HOOK</text>
+<text x="566" y="374" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">허브 폴더 보호</text>
+<text x="566" y="390" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">PreToolUse Edit/Write</text>
+<rect x="652" y="336" width="140" height="64" rx="6" fill="#2d3142"/>
+<rect x="652" y="336" width="140" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="660" y="344" width="32" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.4)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="676" y="353" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">HOOK</text>
+<text x="722" y="374" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">대시보드 열기</text>
+<text x="722" y="390" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">SessionStart</text>
+<rect x="808" y="336" width="140" height="64" rx="6" fill="#2d3142"/>
+<rect x="808" y="336" width="140" height="64" rx="6" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<rect x="816" y="344" width="32" height="12" rx="2" fill="transparent" stroke="rgba(245,245,245,0.4)" stroke-opacity="0.5" stroke-width="0.8"/>
+<text x="832" y="353" fill="#f5f5f5" font-size="7" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.08em">HOOK</text>
+<text x="878" y="374" fill="#f5f5f5" font-size="13" font-weight="600" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif" text-anchor="middle">git 문구 검사</text>
+<text x="878" y="390" fill="#949eb2" font-size="9" font-family="'Geist Mono', ui-monospace, monospace" text-anchor="middle">PreToolUse Bash</text>
+<line x1="40" y1="496" x2="960" y2="496" stroke="rgba(245,245,245,0.1)" stroke-width="0.8"/>
+<text x="40" y="512" fill="#bfc0c0" font-size="8" font-family="'Geist Mono', ui-monospace, monospace" letter-spacing="0.18em">LEGEND</text>
+<rect x="40" y="522" width="14" height="10" rx="2" fill="rgba(240,138,89,0.10)" stroke="#f08a59" stroke-width="1"/>
+<text x="60" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">허브</text>
+<rect x="120" y="522" width="14" height="10" rx="2" fill="#393e53" stroke="#f5f5f5" stroke-width="1"/>
+<text x="140" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">세션, 화면, 훅</text>
+<rect x="256" y="522" width="14" height="10" rx="2" fill="rgba(245,245,245,0.05)" stroke="#bfc0c0" stroke-width="1"/>
+<text x="276" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">파일</text>
+<rect x="328" y="522" width="14" height="10" rx="2" fill="rgba(148,158,178,0.12)" stroke="#949eb2" stroke-width="1"/>
+<text x="348" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">사람</text>
+<line x1="412" y1="527" x2="440" y2="527" stroke="#f08a59" stroke-width="1.4" marker-end="url(#architecture-dark-arrow-accent)"/>
+<text x="448" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">사용자 지시</text>
+<line x1="540" y1="527" x2="568" y2="527" stroke="#bfc0c0" stroke-width="1.2" marker-end="url(#architecture-dark-arrow)"/>
+<text x="576" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">흐름</text>
+<line x1="624" y1="527" x2="652" y2="527" stroke="#bfc0c0" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#architecture-dark-arrow)"/>
+<text x="660" y="532" fill="#bfc0c0" font-size="12" font-weight="500" font-family="'Geist', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">보고(돌아옴)</text>
+</svg>
+</div>
+</div>
+</body>
+</html>

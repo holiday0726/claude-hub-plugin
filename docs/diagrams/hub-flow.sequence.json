@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "배정에서 보고까지",
+    "locale": "ko",
+    "output": "docs/diagrams/hub-flow.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "emphasis": { "label": "지시와 배정" },
+        "default": { "label": "기록과 실행" },
+        "return": { "label": "보고와 화면" },
+        "dashed": { "label": "주기적 읽기" }
+      }
+    }
+  },
+  "participants": [
+    { "id": "user", "type": "external", "label": "사용자", "sublabel": "결정하는 사람", "icon": "person" },
+    { "id": "hub", "type": "backend", "label": "허브 세션", "sublabel": "cwd = hub_dir" },
+    { "id": "worker", "type": "backend", "label": "작업 세션", "sublabel": "claude --bg" },
+    { "id": "hubdir", "type": "database", "label": "허브 폴더", "sublabel": "STATUS.md, *.json" },
+    { "id": "dash", "type": "frontend", "label": "대시보드", "sublabel": "127.0.0.1:4990" }
+  ],
+  "segments": [
+    { "from": 160, "to": 330, "label": "배정" },
+    { "from": 340, "to": 450, "label": "보고와 기록" },
+    { "from": 460, "to": 560, "label": "확인과 결정" }
+  ],
+  "messages": [
+    { "id": "ask", "from": "user", "to": "hub", "y": 176, "label": "일 맡기기", "variant": "emphasis" },
+    { "id": "register", "from": "hub", "to": "hubdir", "y": 208, "label": "agents.json 에 세션 등록", "variant": "default" },
+    { "id": "spawn", "from": "hub", "to": "worker", "y": 240, "label": "claude --bg 로 띄우기", "variant": "default" },
+    { "id": "assign", "from": "hub", "to": "worker", "y": 272, "label": "[배정] SendMessage", "variant": "emphasis", "note": "작업 세션은 worktree 에서 일하고 커밋합니다. git 문구 훅이 커밋 문구를 검사합니다." },
+    { "id": "report", "from": "worker", "to": "hub", "y": 352, "label": "[보고] SendMessage", "variant": "return" },
+    { "id": "record", "from": "hub", "to": "hubdir", "y": 384, "label": "STATUS.md 반영", "variant": "default", "note": "결정이 필요하면 decisions.json 에 올립니다." },
+    { "id": "read", "from": "dash", "to": "hubdir", "y": 472, "label": "몇 초마다 읽기", "variant": "dashed" },
+    { "id": "show", "from": "dash", "to": "user", "y": 504, "label": "현황, 결정, 흐름 화면", "variant": "return" },
+    { "id": "decide", "from": "user", "to": "hub", "y": 536, "label": "결정 알려 주기", "variant": "emphasis" }
+  ],
+  "activations": [
+    { "participant": "hub", "from": 170, "to": 444, "type": "backend" },
+    { "participant": "worker", "from": 236, "to": 358, "type": "backend" },
+    { "participant": "dash", "from": 466, "to": 510, "type": "frontend" }
+  ]
+}
