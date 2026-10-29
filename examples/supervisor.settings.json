@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude --bg *)",
+      "Bash(claude agents *)",
+      "Bash(claude logs *)",
+      "Bash(claude stop *)",
+      "Bash(claude rm *)",
+      "Bash(git push origin *)",
+      "Read(<레인 저장소들의 상위 폴더>/**)",
+      "Edit(<레인 저장소들의 상위 폴더>/*/.claude/worktrees/**)",
+      "Write(<레인 저장소들의 상위 폴더>/*/.claude/worktrees/**)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push * main*)",
+      "Bash(git push * master*)"
+    ]
+  },
+  "autoMode": {
+    "allow": [
+      "<슈퍼바이저 세션(이름이 -supervisor 로 끝나고 허브가 --settings <허브 폴더>/supervisor.settings.json 으로 띄운 세션)에 사용자가 허락한 일을 문장으로 적습니다. 할 수 있는 것(예: 개발 환경 시험, 기능 브랜치 push, 하위 세션 2개까지)과 못 하는 것(예: main 직접 push, force push, 운영 반영, 비밀값 출력)을 함께 씁니다.>"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "model": "claude-opus-5-5",
+  "effortLevel": "high",
+  "permissions": {
+    "allow": [
+      "Bash(claude --bg *)",
+      "Bash(claude agents *)",
+      "Bash(claude logs *)",
+      "Bash(claude stop *)",
+      "Bash(claude rm *)",
+      "Bash(claude respawn *)"
+    ],
+    "deny": [
+      "Edit(~/projects/<레인 저장소 1>/**)",
+      "Edit(~/projects/<레인 저장소 2>/**)"
+    ],
+    "additionalDirectories": [
+      "<레인 저장소들의 상위 폴더>"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "agent-hub",
+  "version": "0.1.0",
+  "description": "허브와 슈퍼바이저 체계: 에이전트 대시보드, 허브 폴더 쓰기 보호와 git 문구 검사 훅, humanizer와 git-message 스킬",
+  "author": {
+    "name": "holiday0726"
+  },
+  "license": "MIT",
+  "keywords": ["hub", "supervisor", "dashboard", "hooks"],
+  "userConfig": {
+    "python": {
+      "type": "string",
+      "title": "Python 실행 명령",
+      "description": "훅을 돌릴 Python 3 명령입니다. Linux와 macOS는 python3, Windows는 python.exe 절대 경로(C:/.../python.exe)를 권장합니다. 비어 있으면 훅이 하나도 돌지 않습니다.",
+      "required": true
+    },
+    "hub_dir": {
+      "type": "string",
+      "title": "허브 폴더",
+      "description": "허브 세션을 여는 폴더의 절대 경로입니다. Windows는 C:/Users/<나>/hub 처럼 씁니다. 대시보드가 이 폴더의 파일을 읽고, 다른 세션은 이 폴더에 Edit/Write 를 못 합니다.",
+      "required": true
+    },
+    "dashboard_port": {
+      "type": "number",
+      "title": "대시보드 포트",
+      "description": "대시보드를 띄울 127.0.0.1 포트입니다. 설정하지 않으면 4990 입니다.",
+      "default": 4990,
+      "min": 1024,
+      "max": 65535
+    },
+    "orca": {
+      "type": "boolean",
+      "title": "Orca 탭 열기",
+      "description": "허브 세션이 열릴 때 orca 명령이 있으면 대시보드를 Orca 브라우저 탭으로 엽니다. 설정하지 않으면 켜짐입니다.",
+      "default": true
+    }
+  }
+}

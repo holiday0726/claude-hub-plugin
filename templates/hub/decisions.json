@@ -1,0 +1,5 @@
+{
+  "_note": "허브가 관리하는 사용자 결정 목록이다. 대시보드 결정 탭이 읽는다. 항목 필드는 id, status, title, detail, options(목록), source(세션 이름), task, raised, until, refs(목록), decision, decided_at 이다. status 는 open(지금 결정 필요), waiting(until 까지 미룸), decided(결정됨, 기록) 셋이다. 결정이 나면 status 를 decided 로 바꾸고 decision 과 decided_at 을 채운다. 지우지 않는다.",
+  "updated": "",
+  "items": []
+}

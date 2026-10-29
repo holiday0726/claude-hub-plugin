@@ -1,0 +1,5 @@
+{
+  "_note": "허브가 관리한다. 공유 dev 환경을 지금 누가 쓰는지와 예정된 재기동을 적는다. 대시보드가 읽기만 한다. 항목 필드는 who(세션), kind(run, restart, deploy), what, since, until, note 이고 시각은 ISO 형식이다. updated_at 이 2시간보다 오래되면 대시보드가 흐리게 보인다.",
+  "updated_at": "",
+  "items": []
+}
